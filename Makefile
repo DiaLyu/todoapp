@@ -70,6 +70,15 @@ migrate-force:
 fix-permissions:
 	@sudo chown -R $(shell id -u):$(shell id -g) out/ migrations/
 
+logs-cleanup:
+	@read -p "Очистить все лог файлы окружения? Опасность утери лог данных. [y/N]: " ans; \
+	if [ "$$ans" = "y" ]; then \
+		sudo rm -rf ${PROJECT_ROOT}/out/logs && \
+		echo "Файлы логов очищены"; \
+	else \
+		echo "Очистка логов отменена"; \
+	fi
+
 todoapp-run:
 	@export LOGGER_FOLDER=${PROJECT_ROOT}/out/logs && \
 	export POSTGRES_HOST=localhost && \
