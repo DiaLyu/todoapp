@@ -1075,7 +1075,9 @@ body.dark-theme .form-group select {
 
     <script>
         // Конфигурация API
-const API_BASE_URL = 'http://127.0.0.1:5050/api/v1';
+const API_BASE_URL = window.location.hostname === 'localhost'
+        ? 'http://localhost:5050/api/v1'
+        : '`http://{window.location.hostname}:5050/api/v1';
 
 // Состояние приложения
 const state = {
